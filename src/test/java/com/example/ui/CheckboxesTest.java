@@ -1,14 +1,12 @@
 package com.example.ui;
 
+import com.example.pages.CheckboxesPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,38 +14,29 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class CheckboxesTest {
 
     private WebDriver driver;
+    CheckboxesPage checkboxesPage;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         driver = new ChromeDriver();
+        checkboxesPage = new CheckboxesPage(driver);
     }
 
     @AfterEach
-    public void teardown() {
+    public void tearDown() {
         driver.quit();
     }
 
     @Test
-    public void checkboxesTest() {
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
-
-        List<WebElement> checkboxes = driver.findElements(By.cssSelector("#checkboxes input[type='checkbox']"));
-        WebElement firstCheckbox = checkboxes.get(0);
-
-        firstCheckbox.click();
-
-        assertTrue(firstCheckbox.isSelected());
+    public void checkboxesTestNew(){
+        checkboxesPage.openPage();
+        checkboxesPage.clickCheckbox(0);
+        assertTrue(checkboxesPage.checkState(0));
     }
     @Test
-    public void checkboxesTest2() {
-        driver.get("https://the-internet.herokuapp.com/checkboxes");
-
-        List<WebElement> checkboxes = driver.findElements(By.cssSelector("#checkboxes input[type='checkbox']"));
-        WebElement secondCheckbox = checkboxes.get(1);
-
-        secondCheckbox.click();
-
-        assertFalse(secondCheckbox.isSelected());
+    public void checkboxesTestNew2(){
+        checkboxesPage.openPage();
+        checkboxesPage.clickCheckbox(1);
+        assertFalse(checkboxesPage.checkState(1));
     }
-
 }

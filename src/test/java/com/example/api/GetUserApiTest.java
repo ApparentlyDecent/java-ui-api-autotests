@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class FirstApiTest {
+public class GetUserApiTest {
 
     @Test
     public void getUserReturns() {
